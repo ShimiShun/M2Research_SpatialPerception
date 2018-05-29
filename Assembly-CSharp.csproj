@@ -68,6 +68,7 @@
      <Compile Include="Assets\Locomotion Setup\Locomotion\Scripts\Locomotion.cs" />
      <Compile Include="Assets\Locomotion Setup\Scripts\JoystickToEvents.cs" />
      <Compile Include="Assets\Locomotion Setup\Scripts\LocomotionPlayer.cs" />
+     <Compile Include="Assets\Research\Script\EnterAreas.cs" />
      <Compile Include="Assets\Research\Script\MovingAround.cs" />
      <None Include="Assets\Basketball Project\Release Notes.txt" />
      <None Include="Assets\Basketball Project\Shaders\MirrorReflection.shader" />
