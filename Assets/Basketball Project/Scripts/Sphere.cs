@@ -9,8 +9,8 @@ public class Sphere : MonoBehaviour {
 	public GameObject owner;	// the player it owns the ball
 	public GameObject inputPlayer;	// player selected
 	public GameObject lastInputPlayer;	// last player selected
-	private GameObject[] players;
-	private GameObject[] oponents;
+	private GameObject[] players; //味方
+	private GameObject[] oponents; //敵
 	public Transform blobPlayerSelected;
 	public float timeToSelectAgain = 0.0f;
 	public GameObject lastCandidatePlayer;
@@ -49,7 +49,7 @@ public class Sphere : MonoBehaviour {
 	void Update () {
 
 		
-		// get input
+		// get input 十字キーで操作
 		fVertical = Input.GetAxis("Vertical");
 		fHorizontal = Input.GetAxis("Horizontal");
 
@@ -58,7 +58,7 @@ public class Sphere : MonoBehaviour {
 		fVertical += joystick.position.y;
 		fHorizontal += joystick.position.x;
 #endif
-
+		/*パス（Z）とシュート（X）のボタン*/
 		bPassButton = false;
 		bShootButton = false;
 		bPassButton = Input.GetKey(KeyCode.Z) || passButtonEnded;

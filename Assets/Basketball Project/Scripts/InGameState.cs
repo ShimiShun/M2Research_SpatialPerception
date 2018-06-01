@@ -80,7 +80,7 @@ public class InGameState : MonoBehaviour {
 			case GameState.PLAYING:
 
 				if (scorerTime && scorerTime.minutes > 39.0f ) {
-					Application.LoadLevel( "Basket_Match" );
+					//Application.LoadLevel( "Basket_Match" );
 				}
 				
 
@@ -286,6 +286,7 @@ public class InGameState : MonoBehaviour {
 		return candidatePlayer;	
 	}
 
+	/*----------------------------------------------------------------------------*/
 	GameObject SelectPassPlayer( Transform trans, GameObject[] _players ) {
 		
 		sphere.GetComponent<Rigidbody>().isKinematic = false;
@@ -326,6 +327,6 @@ public class InGameState : MonoBehaviour {
 
 	}
 
-
+	/*----------------------------------------------------------------------------*/
 
 }

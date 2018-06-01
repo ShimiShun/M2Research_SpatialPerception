@@ -6,17 +6,17 @@ public class Player : MonoBehaviour {
 
 	// player name
 	public string Name;
-	public TypePlayer type = TypePlayer.CENTER;
+	//public TypePlayer type = TypePlayer.CENTER;
 	public float Speed = 1.0f;	
 	public float Strong = 1.0f;
 	public float Control = 1.0f;
 			
 	public enum TypePlayer {
 			POINTGUARD,
-			SHOOTINGGUARD,
-			SMALLFORWARD,
-			POWERFORWARD,
-			CENTER
+			//SHOOTINGGUARD,
+			//SMALLFORWARD,
+			//POWERFORWARD,
+			//CENTER
 		};
 		
 	public Vector3 actualVelocityPlayer;
