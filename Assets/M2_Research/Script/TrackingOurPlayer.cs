@@ -8,13 +8,19 @@ public class TrackingOurPlayer : MonoBehaviour {
 	private GameObject MoveOurBall;
 	[SerializeField]
 	private GameObject OurPlayer;
+	[SerializeField]
+	AnimationCurve anim;
 
-	private bool TrackFlag = false;
-	private Vector3 FirstPos;
+	private bool TrackFlag = true;
+	private Vector3[] BfoAftPos= new Vector3[2];
+	private Vector3 PlayerPos;
+
+	private float BallSpeed;
+	private Vector3 LastedSpeed;
 
 	// Use this for initialization
 	void Start () {
-		FirstPos = MoveOurBall.transform.position;
+		
 		
 	}
 
@@ -32,26 +38,40 @@ public class TrackingOurPlayer : MonoBehaviour {
 		if (other.gameObject.tag == "RedBall")
 		{
 			TrackFlag = true;
-			Debug.Log ("true");
+			//Debug.Log ("true");
 		}
 	}
 
 	// Update is called once per frame
 	void Update () {
-//		Vector2 pos1 = new Vector2(this.transform.position.x, this.transform.position.z);
-//		Vector2 pos2 = new Vector2(MoveOurBall [0].transform.position.x, MoveOurBall [0].transform.position.z);
-		if (MoveOurBall.transform.position != FirstPos)
-			TrackFlag = true;
-
-
+		
 		if (TrackFlag == true) {
+			PlayerPos = OurPlayer.transform.position;
 			OurPlayer.GetComponent<Animator> ().SetBool ("runrun", true);
-			OurPlayer.transform.position += (MoveOurBall.transform.position - OurPlayer.transform.position) * 0.01f;
+			PlayerPos.x += (MoveOurBall.transform.position.x - PlayerPos.x) * 0.1f;
+			PlayerPos.z += (MoveOurBall.transform.position.z - PlayerPos.z) * 0.1f;
+			OurPlayer.transform.position = PlayerPos;
 		} else {
 			OurPlayer.GetComponent<Animator> ().SetBool ("runrun", false);
-			//Debug.Log (Vector2.Distance (pos1, pos2));
+
 		}
 
+		BallSpeed = ((MoveOurBall.transform.position - LastedSpeed) / Time.deltaTime).magnitude;
+		LastedSpeed = MoveOurBall.transform.position;
+		Debug.Log (BallSpeed);
+
+		if (BallSpeed <= 0.09f)
+			Debug.Log ("false");
+//		else
+//			Debug.Log ("true");
 		
 	}
+
+
+//	private bool MoveState(){
+//		if (BallSpeed == Vector3.zero)
+//			return false;
+//		else
+//			return true;
+//	}
 }
