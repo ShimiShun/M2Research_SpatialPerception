@@ -15,10 +15,6 @@ public class Both_players_move : MonoBehaviour {
 	public GameObject D1, D2, D3;
 	private Vector3 pd1, pd2, pd3;
 
-    
-	[SerializeField]
-	AnimationCurve anim;
-
     // Use this for initialization
     void Start () {
         

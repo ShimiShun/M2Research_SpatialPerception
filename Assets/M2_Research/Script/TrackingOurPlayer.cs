@@ -11,6 +11,9 @@ public class TrackingOurPlayer : MonoBehaviour {
 	[SerializeField]
 	private Transform BasketBall;
 
+	[SerializeField]
+	private GameObject B_Ball;
+	private Vector3 B_Pos;
 
 	private bool TrackFlag = false;
 	private Vector3 PlayerPos;
@@ -22,6 +25,7 @@ public class TrackingOurPlayer : MonoBehaviour {
 
 
 	void Update () {
+		
 		if (OurPlayer.transform.position.y != MoveOurBall.transform.position.y)
 			MoveOurBall.transform.position = new Vector3 (MoveOurBall.transform.position.x, OurPlayer.transform.position.y, MoveOurBall.transform.position.z);
 
@@ -42,10 +46,11 @@ public class TrackingOurPlayer : MonoBehaviour {
 
 		BallSpeed = ((MoveOurBall.transform.position - LastedSpeed) / Time.deltaTime).magnitude;
 		LastedSpeed = MoveOurBall.transform.position;
-		Debug.Log (BallSpeed);
-
 
 		MoveState ();
+
+
+		GetBallState ();
 		
 	}
 
@@ -58,4 +63,16 @@ public class TrackingOurPlayer : MonoBehaviour {
 			TrackFlag = true;
 		
 	}
+
+	private void GetBallState(){
+		if ((Mathf.Abs (B_Ball.transform.position.x - OurPlayer.transform.position.x) <= 0.3f) 
+			&& (Mathf.Abs (B_Ball.transform.position.z - OurPlayer.transform.position.z) <= 0.3f)) {
+
+			B_Ball.transform.position = new Vector3 (OurPlayer.transform.position.x, B_Ball.transform.position.y, OurPlayer.transform.position.z-0.2f);
+//			B_Ball.transform.parent = null;
+//			B_Ball.transform.parent = OurPlayer.transform;		
+		}
+			
+	}
+	
 }

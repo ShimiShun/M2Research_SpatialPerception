@@ -8,8 +8,6 @@ public class TrackingOpponentPlayer : MonoBehaviour {
 	private GameObject MoveOurBall;
 	[SerializeField]
 	private GameObject OpponentPlayer;
-
-
 	private bool TrackFlag = false;
 	private Vector3 PlayerPos;
 

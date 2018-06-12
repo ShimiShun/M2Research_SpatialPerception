@@ -66,6 +66,7 @@
      <Compile Include="Assets\Locomotion Setup\Scripts\LocomotionPlayer.cs" />
      <Compile Include="Assets\M2_Research\Script\EnterAreas.cs" />
      <Compile Include="Assets\M2_Research\Script\MovingAround.cs" />
+     <Compile Include="Assets\M2_Research\Script\MovingBall.cs" />
      <Compile Include="Assets\M2_Research\Script\TrackingOpponentPlayer.cs" />
      <Compile Include="Assets\M2_Research\Script\TrackingOurPlayer.cs" />
      <Compile Include="Assets\PlaySound.cs" />
