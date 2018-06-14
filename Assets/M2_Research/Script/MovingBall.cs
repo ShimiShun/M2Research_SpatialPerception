@@ -10,7 +10,7 @@ public class MovingBall : MonoBehaviour {
 	private List<Transform> OurPlayer;
 
 	private Vector3 Player1, Player2, Player3, BallPos;
-
+	private int flag = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -27,33 +27,67 @@ public class MovingBall : MonoBehaviour {
 
 
 		StartCoroutine (DelayMethod (0f, () => {
-			this.transform.parent=null;
-			GetComponent<Rigidbody>().AddForce(new Vector3(Player3.x-BallPos.x, BallPos.y, Player3.z-BallPos.z)*30f,ForceMode.Force);
-			this.transform.parent=OurPlayer[2];
+			if(flag==0){
+			iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player3.x, BallPos.y, Player3.z), "Time", 2f));
+			flag=1;
+			//GetComponent<Rigidbody>().AddForce(new Vector3(Player3.x-BallPos.x, BallPos.y, Player3.z-BallPos.z)*30f);
+			//this.transform.parent=OurPlayer[2];
+			}
 		}));
 
 		StartCoroutine (DelayMethod (5f, () => {
-			this.transform.parent=null;
-			GetComponent<Rigidbody>().AddForce(new Vector3(Player2.x-BallPos.x, BallPos.y, Player2.z-BallPos.z)*30f,ForceMode.Force);
-			this.transform.parent=OurPlayer[1];
+			if(flag==1){
+			iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x+1f, BallPos.y, Player2.z-1f), "Time", 2f));
+			flag=2;
+			//GetComponent<Rigidbody>().AddForce(new Vector3(Player2.x-BallPos.x, BallPos.y, Player2.z-BallPos.z)*30f);
+			//this.transform.parent=OurPlayer[1];
+			}
 		}));
 
 		StartCoroutine (DelayMethod (7f, () => {
-			this.transform.parent=null;
-			GetComponent<Rigidbody>().AddForce(new Vector3(Player1.x-BallPos.x, BallPos.y, Player1.z-BallPos.z)*30f,ForceMode.Force);
-			this.transform.parent=OurPlayer[0];
+			if(flag==2){
+			iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x-2.5f, BallPos.y, Player1.z-1f), "Time", 2f));	
+			flag=3;	//GetComponent<Rigidbody>().AddForce(new Vector3(Player1.x-BallPos.x, BallPos.y, Player1.z-BallPos.z)*30f);
+			//this.transform.parent=OurPlayer[0];
+			}
 		}));
 
-		StartCoroutine (DelayMethod (12.5f, () => {
-			this.transform.parent=null;
-			GetComponent<Rigidbody>().AddForce(new Vector3(Player3.x-BallPos.x, BallPos.y, Player3.z-BallPos.z)*30f,ForceMode.Force);
+		StartCoroutine (DelayMethod (10.5f, () => {
+			if(flag==3){
+				flag=4;
+				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x, BallPos.y, Player2.z), "Time", 2f));	
+			}
+
+		}));
+
+
+		StartCoroutine (DelayMethod (13f, () => {
+			if(flag==4){
+				flag=5;
+				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player3.x, BallPos.y, Player3.z), "Time", 2f));	
+			}
+
+		}));
+
+		StartCoroutine (DelayMethod (15.5f, () => {
+			if(flag==5){
+				flag=6;
+				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x, BallPos.y, Player2.z), "Time", 2f));	
+			}
+
+		}));
+
+		StartCoroutine (DelayMethod (24.5f, () => {
+			if(flag==6){
+				flag=7;
+				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x-2f, BallPos.y, Player1.z), "Time", 2f));	
+			}
 
 		}));
 			
 
-	}
-
-
+}
+		
 
 	private IEnumerator DelayMethod(float time, Action action)
 	{
