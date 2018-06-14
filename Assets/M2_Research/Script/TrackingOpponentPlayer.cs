@@ -21,6 +21,17 @@ public class TrackingOpponentPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (OpponentPlayer.transform.position.y != MoveOurBall.transform.position.y)
+			MoveOurBall.transform.position = new Vector3 (MoveOurBall.transform.position.x, OpponentPlayer.transform.position.y, MoveOurBall.transform.position.z);
+	}
+
+
+	private void MoveState(){
+
+		if (BallSpeed <= 0.09f) 
+			TrackFlag = false;
+		else 
+			TrackFlag = true;
+
 	}
 }
