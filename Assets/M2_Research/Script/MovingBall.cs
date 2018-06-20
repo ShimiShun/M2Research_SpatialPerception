@@ -12,13 +12,7 @@ public class MovingBall : MonoBehaviour {
 	private Vector3 Player1, Player2, Player3, BallPos;
 	private int flag = 0;
 
-	// Use this for initialization
-	void Start () {
 
-
-
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		Player1 = OurPlayer [0].position;
@@ -32,8 +26,6 @@ public class MovingBall : MonoBehaviour {
 			if(flag==0){
 			iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player3.x, BallPos.y, Player3.z), "Time", 2f));
 			flag=1;
-			//GetComponent<Rigidbody>().AddForce(new Vector3(Player3.x-BallPos.x, BallPos.y, Player3.z-BallPos.z)*30f);
-			//this.transform.parent=OurPlayer[2];
 			}
 		}));
 
@@ -41,16 +33,13 @@ public class MovingBall : MonoBehaviour {
 			if(flag==1){
 			iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x+1f, BallPos.y, Player2.z-1f), "Time", 2f));
 			flag=2;
-			//GetComponent<Rigidbody>().AddForce(new Vector3(Player2.x-BallPos.x, BallPos.y, Player2.z-BallPos.z)*30f);
-			//this.transform.parent=OurPlayer[1];
 			}
 		}));
 
 		StartCoroutine (DelayMethod (7f, () => {
 			if(flag==2){
 			iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x-2.5f, BallPos.y, Player1.z-1f), "Time", 2f));	
-			flag=3;	//GetComponent<Rigidbody>().AddForce(new Vector3(Player1.x-BallPos.x, BallPos.y, Player1.z-BallPos.z)*30f);
-			//this.transform.parent=OurPlayer[0];
+			flag=3;
 			}
 		}));
 
@@ -59,7 +48,6 @@ public class MovingBall : MonoBehaviour {
 				flag=4;
 				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x, BallPos.y, Player2.z), "Time", 2f));	
 			}
-
 		}));
 
 
@@ -68,7 +56,6 @@ public class MovingBall : MonoBehaviour {
 				flag=5;
 				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player3.x, BallPos.y, Player3.z), "Time", 2f));	
 			}
-
 		}));
 
 		StartCoroutine (DelayMethod (15.5f, () => {
@@ -76,7 +63,6 @@ public class MovingBall : MonoBehaviour {
 				flag=6;
 				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x, BallPos.y, Player2.z), "Time", 2f));	
 			}
-
 		}));
 
 		StartCoroutine (DelayMethod (24.5f, () => {
@@ -84,19 +70,16 @@ public class MovingBall : MonoBehaviour {
 				flag=7;
 				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x-2f, BallPos.y, Player1.z), "Time", 2f));	
 			}
-
 		}));
 			
 
 }
 		
-
 	private IEnumerator DelayMethod(float time, Action action)
 	{
 		yield return new WaitForSeconds(time);
 		action();
 	}
-
-
+		
 
 }
