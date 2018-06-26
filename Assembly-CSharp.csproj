@@ -64,7 +64,11 @@
      <Compile Include="Assets\Locomotion Setup\Locomotion\Scripts\Locomotion.cs" />
      <Compile Include="Assets\Locomotion Setup\Scripts\JoystickToEvents.cs" />
      <Compile Include="Assets\Locomotion Setup\Scripts\LocomotionPlayer.cs" />
+     <Compile Include="Assets\M2_Research\Script\AnswerOparate.cs" />
+     <Compile Include="Assets\M2_Research\Script\BallAnsData.cs" />
+     <Compile Include="Assets\M2_Research\Script\BallAnsScore.cs" />
      <Compile Include="Assets\M2_Research\Script\ChangingCamera.cs" />
+     <Compile Include="Assets\M2_Research\Script\GrappleObject.cs" />
      <Compile Include="Assets\M2_Research\Script\MovingBall.cs" />
      <Compile Include="Assets\M2_Research\Script\MovingBall2.cs" />
      <Compile Include="Assets\M2_Research\Script\TrackingOpponentPlayer.cs" />

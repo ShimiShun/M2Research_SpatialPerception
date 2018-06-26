@@ -8,14 +8,11 @@ public class ChangingCamera : MonoBehaviour {
 	private GameObject[] MainCamera;
 	[SerializeField]
 	private GameObject[] AnswerCamera;
-//	[SerializeField]
-//	private Camera FeedbackCamera;
-
 	[SerializeField]
 	private bool[] ChangeCamera;
 
 	private float Timer = 0;
-	private int flag;
+	public int flag;
 
 	// Use this for initialization
 	void Start () {
@@ -43,17 +40,20 @@ public class ChangingCamera : MonoBehaviour {
 		Timer += Time.deltaTime;
 
 		if (Timer > 30f) {
-			if (flag == 0)
+			if (flag == 0){
 				MainCamera [0].GetComponent<Camera> ().enabled = false;
 				AnswerCamera [0].GetComponent<Camera> ().enabled = true;
+			}
 
-			if(flag == 1)
+			if (flag == 1) {
 				MainCamera [1].GetComponent<Camera> ().enabled = false;
 				AnswerCamera [1].GetComponent<Camera> ().enabled = true;
+			}
 
-			if (flag == 2)
+			if (flag == 2) {
 				MainCamera [2].GetComponent<Camera> ().enabled = false;
-				AnswerCamera [2].GetComponent<Camera> ().enabled = true;	
+				AnswerCamera [2].GetComponent<Camera> ().enabled = true;
+			}
 		}
 
 		/*此処より下にフィードバック用にoculustouchでカメラチェンジするコードを書く*/

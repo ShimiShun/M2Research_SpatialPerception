@@ -22,37 +22,47 @@ public class TrackingOurPlayer : MonoBehaviour {
 	private float BallSpeed;
 	private Vector3 LastedSpeed;
 
+	private float TimerCount;
 
 
 	void Update () {
+
+		TimerCount += Time.deltaTime;
 		
 		if (OurPlayer.transform.position.y != MoveOurBall.transform.position.y)
 			MoveOurBall.transform.position = new Vector3 (MoveOurBall.transform.position.x, OurPlayer.transform.position.y, MoveOurBall.transform.position.z);
 
-		
-		if (TrackFlag == true) {
-			OurPlayer.GetComponent<Animator> ().SetBool ("runrun", true);
-			PlayerPos = OurPlayer.transform.position;
-			PlayerPos.x += (MoveOurBall.transform.position.x - PlayerPos.x) * 0.5f;
-			PlayerPos.z += (MoveOurBall.transform.position.z - PlayerPos.z) * 0.5f;
-			OurPlayer.transform.position = PlayerPos;
-			OurPlayer.transform.LookAt (MoveOurBall.transform.position);
 
+		if (TimerCount < 30f) {
+			
+			if (TrackFlag == true) {
+				OurPlayer.GetComponent<Animator> ().SetBool ("runrun", true);
+				PlayerPos = OurPlayer.transform.position;
+				PlayerPos.x += (MoveOurBall.transform.position.x - PlayerPos.x) * 0.5f;
+				PlayerPos.z += (MoveOurBall.transform.position.z - PlayerPos.z) * 0.5f;
+				OurPlayer.transform.position = PlayerPos;
+				OurPlayer.transform.LookAt (MoveOurBall.transform.position);
+
+			} else {
+				Quaternion target = Quaternion.LookRotation (new Vector3 (BasketBall.rotation.x, OurPlayer.transform.rotation.y, BasketBall.rotation.z) - OurPlayer.transform.position);
+				OurPlayer.GetComponent<Animator> ().SetBool ("runrun", false);
+				OurPlayer.transform.rotation = Quaternion.Slerp (OurPlayer.transform.rotation, target, Time.deltaTime*3);
+			}
+
+			BallSpeed = ((MoveOurBall.transform.position - LastedSpeed) / Time.deltaTime).magnitude;
+			LastedSpeed = MoveOurBall.transform.position;
+
+			MoveState ();
+			GetBallState ();
+		
 		} else {
-			Quaternion target = Quaternion.LookRotation (new Vector3(BasketBall.rotation.x, OurPlayer.transform.rotation.y, BasketBall.rotation.z)-OurPlayer.transform.position);
 			OurPlayer.GetComponent<Animator> ().SetBool ("runrun", false);
-			//OurPlayer.transform.rotation = Quaternion.Slerp (OurPlayer.transform.rotation, target, Time.deltaTime*3);
+			MoveOurBall.GetComponent<Animator> ().enabled = false;
 		}
 
-		BallSpeed = ((MoveOurBall.transform.position - LastedSpeed) / Time.deltaTime).magnitude;
-		LastedSpeed = MoveOurBall.transform.position;
-
-		MoveState ();
-
-
-		GetBallState ();
 		
 	}
+
 
 
 	private void MoveState(){
@@ -71,7 +81,6 @@ public class TrackingOurPlayer : MonoBehaviour {
 			B_Ball.transform.position = new Vector3 (OurPlayer.transform.position.x, B_Ball.transform.position.y, OurPlayer.transform.position.z-0.2f);
 			B_Ball.transform.parent = null;
 			B_Ball.transform.parent = OurPlayer.transform;
-			//B_Ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
 		}
 			
 	}

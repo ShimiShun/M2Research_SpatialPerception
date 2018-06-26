@@ -14,6 +14,8 @@ public class TrackingOpponentPlayer : MonoBehaviour {
 	private float BallSpeed;
 	private Vector3 LastedSpeed;
 
+	private float OpponentSpeed = 0.05f;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -27,8 +29,8 @@ public class TrackingOpponentPlayer : MonoBehaviour {
 		if (TrackFlag == true) {
 			OpponentPlayer.GetComponent<Animator> ().SetBool ("runrun", true);
 			PlayerPos = OpponentPlayer.transform.position;
-			PlayerPos.x += (MoveOurBall.transform.position.x - PlayerPos.x) * 0.1f;
-			PlayerPos.z += (MoveOurBall.transform.position.z - PlayerPos.z) * 0.1f;
+			PlayerPos.x += (MoveOurBall.transform.position.x - PlayerPos.x) * OpponentSpeed;
+			PlayerPos.z += (MoveOurBall.transform.position.z - PlayerPos.z) * OpponentSpeed;
 			OpponentPlayer.transform.position = PlayerPos;
 			OpponentPlayer.transform.LookAt (MoveOurBall.transform.position);
 
