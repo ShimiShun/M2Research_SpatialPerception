@@ -81,7 +81,7 @@ public class MovingBall2 : MonoBehaviour {
 			}
 		}));
 
-		StartCoroutine (DelayMethod (24f, () => {
+		StartCoroutine (DelayMethod (25f, () => {
 			if(flag==8){
 				flag=9;
 				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x, BallPos.y, Player1.z), "Time", 2f));	
