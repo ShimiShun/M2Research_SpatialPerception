@@ -16,7 +16,7 @@ public class MovingBall2 : MonoBehaviour {
 	void Update () {
 
 		timer += Time.deltaTime;
-		Debug.Log (timer);
+		//Debug.Log (timer);
 
 		Player1 = OurPlayer [0].position;
 		Player2 = OurPlayer [1].position;

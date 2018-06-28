@@ -39,7 +39,7 @@ public class ChangingCamera : MonoBehaviour {
 	void Update () {
 		Timer += Time.deltaTime;
 
-		if (Timer > 5f) {
+		if (Timer > 30f) {
 			
 			MainCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
 			AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
