@@ -17,41 +17,12 @@ public class BallAnsScore : MonoBehaviour {
 		AnswerData = new BallAnsData[MoveAns.Length];
 		for (int i = 0; i < AnswerData.Length; i++) {
 			AnswerData [i] = new BallAnsData(MoveAns [i]);
-			Debug.Log (AnswerData [i].getNameTag());
+			//Debug.Log (AnswerData [i].getNameTag());
 		}
 			
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-		
-	}
 
-
-	/*---------------Tagでやる場合---------------------*/
-
-//	void OnTriggerEnter(Collider AnswerPlayer){
-//		foreach(var Ans in AnswerData){
-//			if ((this.gameObject.tag=="RedArea" && AnswerPlayer.tag == Ans.getNameTag())
-//				|| (this.gameObject.tag == "BlueArea" && AnswerPlayer.tag == Ans.getNameTag())) {
-//				Ans.BallEnter();
-//
-//			} 
-//		}
-//	}
-//
-//	void OnTriggerExit(Collider AnswerPlayer){
-//		foreach(var Ans in AnswerData){
-//			if ((this.gameObject.tag=="RedArea" && AnswerPlayer.tag == Ans.getNameTag())
-//				|| (this.gameObject.tag == "BlueArea" && AnswerPlayer.tag == Ans.getNameTag())) {
-//				Ans.BallExit();
-//			}
-//		}
-//	}
-
-
-	/*--------------Nameでやる場合----------------------*/
 
 	void OnTriggerEnter(Collider AnswerPlayer){
 		foreach (var Ans in AnswerData) {

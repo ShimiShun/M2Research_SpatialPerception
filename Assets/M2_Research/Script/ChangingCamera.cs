@@ -12,7 +12,7 @@ public class ChangingCamera : MonoBehaviour {
 	private bool[] ChangeCamera;
 
 	private float Timer = 0;
-	public int flag;
+	private int CameraNumber;
 
 	// Use this for initialization
 	void Start () {
@@ -20,43 +20,55 @@ public class ChangingCamera : MonoBehaviour {
 		if (ChangeCamera [0] && !ChangeCamera [1] && !ChangeCamera [2]) {
 			MainCamera [0].SetActive (true);
 			AnswerCamera [0].SetActive (true);
-			flag = 0;
+			CameraNumber = 0;
 		}
 		else if (!ChangeCamera [0] && ChangeCamera [1] && !ChangeCamera [2]) {
 			MainCamera [1].SetActive (true);
 			AnswerCamera [1].SetActive (true);
-			flag = 1;
+			CameraNumber = 1;
 		}
 		else if (!ChangeCamera [0] && !ChangeCamera [1] && ChangeCamera [2]) {
 			MainCamera [2].SetActive (true);
 			AnswerCamera [2].SetActive (true);
-			flag = 2;
+			CameraNumber = 2;
 		}
 		
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		Timer += Time.deltaTime;
 
-		if (Timer > 30f) {
-			if (flag == 0){
-				MainCamera [0].GetComponent<Camera> ().enabled = false;
-				AnswerCamera [0].GetComponent<Camera> ().enabled = true;
+		if (Timer > 5f) {
+			
+			MainCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
+			AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
+		
+
+			/*此処より下にフィードバック用にoculustouchでカメラチェンジするコードを書く*/
+
+			////三人称視点のトップからの視点へのシフトONOFF
+			if (Input.GetKey (KeyCode.Return)) {
+				AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
+				this.GetComponent<Camera> ().enabled = true;
+			} else{
+
+				AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
+				this.GetComponent<Camera> ().enabled = false;
+
 			}
 
-			if (flag == 1) {
-				MainCamera [1].GetComponent<Camera> ().enabled = false;
-				AnswerCamera [1].GetComponent<Camera> ().enabled = true;
+
+			////メインカメラ(一人称視点のカメラ)へのシフトONOFF
+			if (Input.GetKey (KeyCode.LeftShift)) {
+				MainCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
+				AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
+			} else {
+				MainCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
+				AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
 			}
 
-			if (flag == 2) {
-				MainCamera [2].GetComponent<Camera> ().enabled = false;
-				AnswerCamera [2].GetComponent<Camera> ().enabled = true;
-			}
 		}
-
-		/*此処より下にフィードバック用にoculustouchでカメラチェンジするコードを書く*/
-
 	}
+
 }
