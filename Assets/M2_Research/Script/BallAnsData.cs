@@ -27,11 +27,17 @@ public class BallAnsData : MonoBehaviour {
 	public void BallEnter(){
 		state = true;
 		score += 16;
+		Debug.Log (score);
 	}
 
 	public void BallExit(){
 		state = false;
 		score -= 16;
+		Debug.Log (score);
+	}
+
+	public string getNameTag(){
+		return ball.tag;
 	}
 
 	public string getName(){
