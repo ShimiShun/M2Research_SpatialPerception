@@ -68,6 +68,7 @@
      <Compile Include="Assets\M2_Research\Script\BallAnsData.cs" />
      <Compile Include="Assets\M2_Research\Script\BallAnsScore.cs" />
      <Compile Include="Assets\M2_Research\Script\ChangingCamera.cs" />
+     <Compile Include="Assets\M2_Research\Script\FixChildRotation.cs" />
      <Compile Include="Assets\M2_Research\Script\GrappleObject.cs" />
      <Compile Include="Assets\M2_Research\Script\MovingBall.cs" />
      <Compile Include="Assets\M2_Research\Script\MovingBall2.cs" />

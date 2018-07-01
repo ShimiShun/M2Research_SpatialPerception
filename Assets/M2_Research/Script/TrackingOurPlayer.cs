@@ -46,7 +46,7 @@ public class TrackingOurPlayer : MonoBehaviour {
 			} else {
 				Quaternion target = Quaternion.LookRotation (new Vector3 (BasketBall.rotation.x, OurPlayer.transform.rotation.y, BasketBall.rotation.z) - OurPlayer.transform.position);
 				OurPlayer.GetComponent<Animator> ().SetBool ("runrun", false);
-				OurPlayer.transform.rotation = Quaternion.Slerp (OurPlayer.transform.rotation, target, Time.deltaTime*3);
+				//OurPlayer.transform.rotation = Quaternion.Slerp (OurPlayer.transform.rotation, target, Time.deltaTime*3);
 			}
 
 			BallSpeed = ((MoveOurBall.transform.position - LastedSpeed) / Time.deltaTime).magnitude;
