@@ -43,7 +43,7 @@ public class OvrAvatarLocalDriver : OvrAvatarDriver {
         pose = new PoseFrame
         {
             voiceAmplitude = voiceAmplitude,
-            headPosition = UnityEngine.VR.InputTracking.GetLocalPosition(UnityEngine.VR.VRNode.CenterEye),
+            headPosition = UnityEngine.VR.InputTracking.GetLocalPosition(UnityEngine.VR.VRNode.CenterEye)*2,
             headRotation = UnityEngine.VR.InputTracking.GetLocalRotation(UnityEngine.VR.VRNode.CenterEye),
             handLeftPosition = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch),
             handLeftRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch),

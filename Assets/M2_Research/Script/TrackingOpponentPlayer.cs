@@ -14,7 +14,7 @@ public class TrackingOpponentPlayer : MonoBehaviour {
 	private float BallSpeed;
 	private Vector3 LastedSpeed;
 
-	private float OpponentSpeed = 0.05f;
+	private float OpponentSpeed = 0.02f;
 
 	// Use this for initialization
 	void Start () {

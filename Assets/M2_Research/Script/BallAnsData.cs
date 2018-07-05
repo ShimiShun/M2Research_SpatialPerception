@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallAnsData : MonoBehaviour {
+public class BallAnsData{
 
 	private bool state;
 	private GameObject ball;

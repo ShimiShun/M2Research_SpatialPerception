@@ -35,7 +35,7 @@ public class AnswerOparate : MonoBehaviour {
 		if (a == 0) {
 			if (Input.GetKey (KeyCode.Space)) {
 				var pos = TargetAnswer.transform.position;
-				pos.y += 10f;
+				pos.y += 1f;
 				TargetAnswer.transform.position = pos;
 
 				for (int i = 0; i < AnswerCamera.Length; i++) {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VR;
 
 public class ChangingCamera : MonoBehaviour {
 
@@ -8,6 +9,9 @@ public class ChangingCamera : MonoBehaviour {
 	private GameObject[] MainCamera;
 	[SerializeField]
 	private GameObject[] AnswerCamera;
+    [SerializeField]
+    private GameObject OculusCamera;
+
 	[SerializeField]
 	private bool[] ChangeCamera;
 
@@ -32,42 +36,48 @@ public class ChangingCamera : MonoBehaviour {
 			AnswerCamera [2].SetActive (true);
 			CameraNumber = 2;
 		}
-		
-	}
+
+
+        
+    }
 
 	// Update is called once per frame
 	void Update () {
 		Timer += Time.deltaTime;
-
-		if (Timer > 30f) {
+        OculusCamera.GetComponent<Camera>().enabled = false;
+       
+        if (Timer > 30f) {
 			
 			MainCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
-			AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
-		
+            //AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
+            OculusCamera.GetComponent<Camera>().enabled = true;
 
-			/*此処より下にフィードバック用にoculustouchでカメラチェンジするコードを書く*/
-
-			////三人称視点のトップからの視点へのシフトONOFF
-			if (Input.GetKey (KeyCode.Return)) {
-				AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
-				this.GetComponent<Camera> ().enabled = true;
-			} else{
-
-				AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
-				this.GetComponent<Camera> ().enabled = false;
-
-			}
-
-
-			////メインカメラ(一人称視点のカメラ)へのシフトONOFF
-			if (Input.GetKey (KeyCode.LeftShift)) {
+////メインカメラ(一人称視点のカメラ)へのシフトONOFF
+			if (OVRInput.Get (OVRInput.RawButton.B)) {
 				MainCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
-				AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
-			} else {
+				//AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
+                OculusCamera.GetComponent<Camera>().enabled = false;
+            } else {
 				MainCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
-				AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
-			}
+                //AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
+                OculusCamera.GetComponent<Camera>().enabled = true;
+            }
 
+            ////三人称視点のトップからの視点へのシフトONOFF
+            if (OVRInput.Get (OVRInput.RawButton.A)) {
+				//AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
+				this.GetComponent<Camera> ().enabled = true;
+                OculusCamera.GetComponent<Camera>().enabled = false;
+            } else{
+               
+               // AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
+                this.GetComponent<Camera> ().enabled = false;
+                OculusCamera.GetComponent<Camera>().enabled = true;
+            }
+
+
+			
+            
 		}
 	}
 
