@@ -23,17 +23,17 @@ public class ChangingCamera : MonoBehaviour {
 		
 		if (ChangeCamera [0] && !ChangeCamera [1] && !ChangeCamera [2]) {
 			MainCamera [0].SetActive (true);
-			AnswerCamera [0].SetActive (true);
+			//AnswerCamera [0].SetActive (true);
 			CameraNumber = 0;
 		}
 		else if (!ChangeCamera [0] && ChangeCamera [1] && !ChangeCamera [2]) {
 			MainCamera [1].SetActive (true);
-			AnswerCamera [1].SetActive (true);
+			//AnswerCamera [1].SetActive (true);
 			CameraNumber = 1;
 		}
 		else if (!ChangeCamera [0] && !ChangeCamera [1] && ChangeCamera [2]) {
 			MainCamera [2].SetActive (true);
-			AnswerCamera [2].SetActive (true);
+			//AnswerCamera [2].SetActive (true);
 			CameraNumber = 2;
 		}
 
@@ -44,7 +44,7 @@ public class ChangingCamera : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Timer += Time.deltaTime;
-        OculusCamera.GetComponent<Camera>().enabled = false;
+        //OculusCamera.GetComponent<Camera>().enabled = false;
        
         if (Timer > 30f) {
 			

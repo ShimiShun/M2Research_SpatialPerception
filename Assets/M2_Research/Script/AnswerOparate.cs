@@ -18,12 +18,12 @@ public class AnswerOparate : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		AnsCameraState = GetComponent<ChangingCamera> ();
+		/*AnsCameraState = GetComponent<ChangingCamera> ();
 		for (int i = 0; i < AnswerCamera.Length; i++) {
 			var pos = AnswerCamera [i].transform.transform.position;
 			pos.y += 10f;
 			AnswerCamera [i].transform.position = pos;
-		}
+		}*/
 	}
 	
 	// Update is called once per frame
@@ -38,11 +38,11 @@ public class AnswerOparate : MonoBehaviour {
 				pos.y += 1f;
 				TargetAnswer.transform.position = pos;
 
-				for (int i = 0; i < AnswerCamera.Length; i++) {
+				/*for (int i = 0; i < AnswerCamera.Length; i++) {
 					var pos2 = AnswerCamera [i].transform.transform.position;
 					pos2.y -= 10f;
 					AnswerCamera [i].transform.position = pos2;
-				}
+				}*/
 
 				a = 1;
 			}

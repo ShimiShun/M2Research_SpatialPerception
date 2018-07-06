@@ -8,15 +8,7 @@ public class BallAnsData{
 	private GameObject ball;
 	public static int score = 0;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public BallAnsData(GameObject ball){
 		state = false;
@@ -27,12 +19,16 @@ public class BallAnsData{
 	public void BallEnter(){
 		state = true;
 		score += 16;
-		Debug.Log (score);
+        if (score >= 96)
+            score = 100;
+        Debug.Log (score);
 	}
 
 	public void BallExit(){
 		state = false;
 		score -= 16;
+        if (score >= 96)
+            score = 100;
 		Debug.Log (score);
 	}
 
