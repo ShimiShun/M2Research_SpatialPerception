@@ -44,7 +44,7 @@ public class ChangingCamera : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Timer += Time.deltaTime;
-        //OculusCamera.GetComponent<Camera>().enabled = false;
+        OculusCamera.GetComponent<Camera>().enabled = false;
        
         if (Timer > 30f) {
 			
@@ -52,7 +52,7 @@ public class ChangingCamera : MonoBehaviour {
             //AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
             OculusCamera.GetComponent<Camera>().enabled = true;
 
-////メインカメラ(一人称視点のカメラ)へのシフトONOFF
+            ////メインカメラ(一人称視点のカメラ)へのシフトONOFF
 			if (OVRInput.Get (OVRInput.RawButton.B)) {
 				MainCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
 				//AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;

@@ -8,8 +8,11 @@ public class BallAnsScore : MonoBehaviour {
 	private GameObject[] MoveAns;
 	[SerializeField]
 	private GameObject[] AnsArea;
-
+   
 	private BallAnsData[] AnswerData;
+    public static int BallNumber;
+
+    AnswerOparate BallHoldNumber;
 
 
 	// Use this for initialization
@@ -19,6 +22,8 @@ public class BallAnsScore : MonoBehaviour {
 			AnswerData [i] = new BallAnsData(MoveAns [i]);
 			//Debug.Log (AnswerData [i].getNameTag());
 		}
+
+        BallHoldNumber = GameObject.Find("FeedBackCamera").GetComponent<AnswerOparate>();
 			
 	}
 	
@@ -26,13 +31,23 @@ public class BallAnsScore : MonoBehaviour {
 
 	void OnTriggerEnter(Collider AnswerPlayer){
 		foreach (var Ans in AnswerData) {
-			if ((this.gameObject.tag == "BlueArea" && AnswerPlayer.tag == "BlueAnswer")
+
+            if (BallHoldNumber.BallScore == 1 && this.gameObject.name == "Player1" && AnswerPlayer.tag == "ball"
+                || BallHoldNumber.BallScore == 2 && this.gameObject.name == "Player2" && AnswerPlayer.tag == "ball"
+                || BallHoldNumber.BallScore == 3 && this.gameObject.name == "Player3" && AnswerPlayer.tag == "ball")
+            {
+                Ans.BallEnter();
+                break;
+            }
+
+            if ((this.gameObject.tag == "BlueArea" && AnswerPlayer.tag == "BlueAnswer")
 			   || (this.gameObject.tag == "RedArea" && AnswerPlayer.tag == "RedAnswer")) {
 				if (AnswerPlayer.name == Ans.getName ()
 				   && AnswerPlayer.tag != "RedArea" && AnswerPlayer.tag != "BlueArea") {
 
-					Ans.BallEnter ();
-					break;
+					Ans.PlayerEnter ();
+                   
+                    break;
 				} 
 			}
 		}
@@ -40,12 +55,21 @@ public class BallAnsScore : MonoBehaviour {
 
 	void OnTriggerExit(Collider AnswerPlayer){
 		foreach (var Ans in AnswerData) {
-			if ((this.gameObject.tag == "BlueArea" && AnswerPlayer.tag == "BlueAnswer")
+
+            if (BallHoldNumber.BallScore == 1 && this.gameObject.name == "Player1" && AnswerPlayer.tag == "ball"
+                || BallHoldNumber.BallScore == 2 && this.gameObject.name == "Player2" && AnswerPlayer.tag == "ball"
+                || BallHoldNumber.BallScore == 3 && this.gameObject.name == "Player3" && AnswerPlayer.tag == "ball")
+            {
+                Ans.BallExit();
+                break;
+            }
+
+            if ((this.gameObject.tag == "BlueArea" && AnswerPlayer.tag == "BlueAnswer")
 				|| (this.gameObject.tag == "RedArea" && AnswerPlayer.tag == "RedAnswer")) {
 				if (AnswerPlayer.name == Ans.getName ()
 					&& AnswerPlayer.tag != "RedArea" && AnswerPlayer.tag != "BlueArea") {
 
-					Ans.BallExit ();
+					Ans.PlayerExit ();
 					break;
 				} 
 			}

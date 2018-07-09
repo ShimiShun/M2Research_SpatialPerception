@@ -68,8 +68,9 @@ public class MovingBall : MonoBehaviour {
 		StartCoroutine (DelayMethod (24.5f, () => {
 			if(flag==6){
 				flag=7;
-				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x-2f, BallPos.y, Player1.z), "Time", 2f));	
-			}
+				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x-2f, BallPos.y, Player1.z), "Time", 2f));
+                GameObject.Find("FeedBackCamera").GetComponent<AnswerOparate>().BallScore = 1;
+            }
 		}));
 			
 

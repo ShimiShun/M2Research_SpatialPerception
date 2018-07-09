@@ -12,6 +12,8 @@ public class MovingBall2 : MonoBehaviour {
 	private int flag = 0;
 	float timer = 0.0f;
 
+   
+
 	// Update is called once per frame
 	void Update () {
 
@@ -84,7 +86,8 @@ public class MovingBall2 : MonoBehaviour {
 		StartCoroutine (DelayMethod (25f, () => {
 			if(flag==8){
 				flag=9;
-				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x, BallPos.y, Player1.z), "Time", 2f));	
+				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x, BallPos.y, Player1.z), "Time", 2f));
+                GameObject.Find("FeedBackCamera").GetComponent<AnswerOparate>().BallScore = 1;
 			}
 		}));
 		

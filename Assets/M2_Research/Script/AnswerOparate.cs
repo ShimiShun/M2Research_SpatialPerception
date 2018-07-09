@@ -6,32 +6,38 @@ public class AnswerOparate : MonoBehaviour {
 	
 	[SerializeField]
 	private GameObject TargetAnswer;
-
 	[SerializeField]
 	private GameObject[] AnswerCamera;
-
+    [SerializeField]
+    private GameObject PointText;
 
 	ChangingCamera AnsCameraState;
 	private int CameraState;
+
+    public int BallScore;
 
 	int a = 0;
 
 	// Use this for initialization
 	void Start () {
-		/*AnsCameraState = GetComponent<ChangingCamera> ();
+        /*AnsCameraState = GetComponent<ChangingCamera> ();
 		for (int i = 0; i < AnswerCamera.Length; i++) {
 			var pos = AnswerCamera [i].transform.transform.position;
 			pos.y += 10f;
 			AnswerCamera [i].transform.position = pos;
 		}*/
+
+       
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-		//CameraState = AnsCameraState.flag;
 
-		/*-------EnterKeyで答え合わせをで~~~~~ん---------*/
+        //CameraState = AnsCameraState.flag;
+       
+		
+        /*-------EnterKeyで答え合わせをで~~~~~ん---------*/
 		if (a == 0) {
 			if (Input.GetKey (KeyCode.Space)) {
 				var pos = TargetAnswer.transform.position;
@@ -48,6 +54,11 @@ public class AnswerOparate : MonoBehaviour {
 			}
 		}
 
+
+        /*------------------ポイントの３Dテキスト表示------------------------*/
+
+      
+        PointText.GetComponent<TextMesh>().text = BallAnsData.score + "Points";
 
 
 

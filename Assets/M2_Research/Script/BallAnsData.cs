@@ -7,6 +7,7 @@ public class BallAnsData{
 	private bool state;
 	private GameObject ball;
 	public static int score = 0;
+    
 
 	
 
@@ -16,23 +17,29 @@ public class BallAnsData{
 		this.ball = ball;
 	}
 
-	public void BallEnter(){
+	public void PlayerEnter(){
 		state = true;
 		score += 16;
-        if (score >= 96)
-            score = 100;
-        Debug.Log (score);
 	}
 
-	public void BallExit(){
+	public void PlayerExit(){
 		state = false;
 		score -= 16;
-        if (score >= 96)
-            score = 100;
-		Debug.Log (score);
 	}
 
-	public string getNameTag(){
+    public void BallEnter()
+    {
+        state = true;
+        score += 4;
+    }
+
+    public void BallExit()
+    {
+        state = false;
+        score -= 4;
+    }
+
+    public string getNameTag(){
 		return ball.tag;
 	}
 
