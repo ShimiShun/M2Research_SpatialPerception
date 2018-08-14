@@ -13,6 +13,7 @@ public class BallAnsScore : MonoBehaviour {
     public static int BallNumber;
 
     AnswerOparate BallHoldNumber;
+    public int AnsState = 0;
 
 
 	// Use this for initialization
@@ -30,6 +31,7 @@ public class BallAnsScore : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider AnswerPlayer){
+        
 		foreach (var Ans in AnswerData) {
 
             if (BallHoldNumber.BallScore == 1 && this.gameObject.name == "Player1" && AnswerPlayer.tag == "ball"
@@ -45,8 +47,14 @@ public class BallAnsScore : MonoBehaviour {
 				if (AnswerPlayer.name == Ans.getName ()
 				   && AnswerPlayer.tag != "RedArea" && AnswerPlayer.tag != "BlueArea") {
 
-					Ans.PlayerEnter ();
-                   
+                    AnsState++;
+
+                    if (AnsState==1)
+                    {
+                        Ans.PlayerEnter();
+                       
+                    }
+                    Debug.Log(AnsState);
                     break;
 				} 
 			}
@@ -69,8 +77,15 @@ public class BallAnsScore : MonoBehaviour {
 				if (AnswerPlayer.name == Ans.getName ()
 					&& AnswerPlayer.tag != "RedArea" && AnswerPlayer.tag != "BlueArea") {
 
-					Ans.PlayerExit ();
-					break;
+                    AnsState--;
+                    if (AnsState == 0)
+                    {
+                        Ans.PlayerExit();
+                       
+                    }
+
+                    Debug.Log(AnsState);
+                    break;
 				} 
 			}
 		}

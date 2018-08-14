@@ -17,6 +17,11 @@ public class BallAnsData{
 		this.ball = ball;
 	}
 
+    public bool getState()
+    {
+        return state;
+    }
+
 	public void PlayerEnter(){
 		state = true;
 		score += 16;
