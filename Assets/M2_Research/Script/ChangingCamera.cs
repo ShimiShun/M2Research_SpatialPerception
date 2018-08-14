@@ -36,8 +36,7 @@ public class ChangingCamera : MonoBehaviour {
 			//AnswerCamera [2].SetActive (true);
 			CameraNumber = 2;
 		}
-
-
+        
         
     }
 
@@ -45,35 +44,45 @@ public class ChangingCamera : MonoBehaviour {
 	void Update () {
 		Timer += Time.deltaTime;
         OculusCamera.GetComponent<Camera>().enabled = false;
-       
-        if (Timer > 30f) {
-			
-			MainCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
+
+        if (Timer > 30f)
+        {
+
+            MainCamera[CameraNumber].GetComponent<Camera>().enabled = false;
             //AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
             OculusCamera.GetComponent<Camera>().enabled = true;
 
+
+            if (GameObject.Find("FeedBackCamera").GetComponent<AnswerOparate>().a == 1) {
             ////メインカメラ(一人称視点のカメラ)へのシフトONOFF
-			if (OVRInput.Get (OVRInput.RawButton.B)) {
-				MainCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
-				//AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
+            if (OVRInput.Get(OVRInput.RawButton.B))
+            {
+                MainCamera[CameraNumber].GetComponent<Camera>().enabled = true;
+                //AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
                 OculusCamera.GetComponent<Camera>().enabled = false;
-            } else {
-				MainCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
+            }
+            else
+            {
+                MainCamera[CameraNumber].GetComponent<Camera>().enabled = false;
                 //AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
                 OculusCamera.GetComponent<Camera>().enabled = true;
             }
 
             ////三人称視点のトップからの視点へのシフトONOFF
-            if (OVRInput.Get (OVRInput.RawButton.A)) {
-				//AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
-				this.GetComponent<Camera> ().enabled = true;
+            /*if (OVRInput.Get(OVRInput.RawButton.A))
+            {
+                //AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
+                this.GetComponent<Camera>().enabled = true;
                 OculusCamera.GetComponent<Camera>().enabled = false;
-            } else{
-               
-               // AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
-                this.GetComponent<Camera> ().enabled = false;
-                OculusCamera.GetComponent<Camera>().enabled = true;
             }
+            else
+            {
+
+                // AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
+                this.GetComponent<Camera>().enabled = false;
+                OculusCamera.GetComponent<Camera>().enabled = true;
+            }*/
+        }
 
 
 			
