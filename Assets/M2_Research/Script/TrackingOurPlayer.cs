@@ -23,9 +23,16 @@ public class TrackingOurPlayer : MonoBehaviour {
 	private Vector3 LastedSpeed;
 
 	private float TimerCount;
+    private float PlayTime;
 
 
-	void Update () {
+    void Start()
+    {
+        PlayTime = GameObject.Find("FeedBackCamera").GetComponent<ChangingCamera>().PlayTime;
+    }
+
+
+    void Update () {
 
 		TimerCount += Time.deltaTime;
 		
@@ -33,7 +40,7 @@ public class TrackingOurPlayer : MonoBehaviour {
 			MoveOurBall.transform.position = new Vector3 (MoveOurBall.transform.position.x, OurPlayer.transform.position.y, MoveOurBall.transform.position.z);
 
 
-		if (TimerCount < 30f) {
+		if (TimerCount < PlayTime) {
 			
 			if (TrackFlag == true) {
 				OurPlayer.GetComponent<Animator> ().SetBool ("runrun", true);

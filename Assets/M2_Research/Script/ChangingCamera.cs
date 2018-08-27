@@ -17,6 +17,7 @@ public class ChangingCamera : MonoBehaviour {
 
 	private float Timer = 0;
 	private int CameraNumber;
+    public float PlayTime;
 
 	// Use this for initialization
 	void Start () {
@@ -36,8 +37,9 @@ public class ChangingCamera : MonoBehaviour {
 			//AnswerCamera [2].SetActive (true);
 			CameraNumber = 2;
 		}
-        
-        
+
+        PlayTime = Random.Range(20f, 25f);
+        Debug.Log(PlayTime);
     }
 
 	// Update is called once per frame
@@ -45,7 +47,7 @@ public class ChangingCamera : MonoBehaviour {
 		Timer += Time.deltaTime;
         OculusCamera.GetComponent<Camera>().enabled = false;
 
-        if (Timer > 30f)
+        if (Timer > PlayTime)
         {
 
             MainCamera[CameraNumber].GetComponent<Camera>().enabled = false;
