@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VR;
 
 public class TestTracking : MonoBehaviour {
 
@@ -12,15 +13,17 @@ public class TestTracking : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        pos = target.transform.position;
-        this.transform.position = new Vector3(pos.x, this.transform.position.y, pos.z);
+        //pos = target.transform.position;
+       // this.transform.position = new Vector3(pos.x, this.transform.position.y, pos.z);
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        pos = target.transform.position;
-        this.transform.position = new Vector3(pos.x, this.transform.position.y, pos.z);
+        Quaternion pos = this.transform.rotation;
+        pos.y = InputTracking.GetLocalRotation(VRNode.CenterEye).y;
+       
+        this.transform.rotation = pos;
 
-	}
+    }
 }

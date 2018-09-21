@@ -5,6 +5,18 @@ using UnityEngine.VR;
 
 public class ChangingCamera : MonoBehaviour {
 
+    public enum Mode
+    {
+        Player1,
+        Player2,
+        Player3,
+        ThirdPeronView
+    };
+
+
+    [SerializeField]
+    private Mode CameraMode;
+
 	[SerializeField]
 	private GameObject[] MainCamera;
 	[SerializeField]
@@ -12,34 +24,47 @@ public class ChangingCamera : MonoBehaviour {
     [SerializeField]
     private GameObject OculusCamera;
 
-	[SerializeField]
-	private bool[] ChangeCamera;
+	//[SerializeField]
+	//private bool[] ChangeCamera;
 
 	private float Timer = 0;
 	private int CameraNumber;
-    public float PlayTime;
+    public int PlayTime;
+
+     
 
 	// Use this for initialization
 	void Start () {
 		
-		if (ChangeCamera [0] && !ChangeCamera [1] && !ChangeCamera [2]) {
+		if (CameraMode == Mode.Player1) {
 			MainCamera [0].SetActive (true);
 			//AnswerCamera [0].SetActive (true);
 			CameraNumber = 0;
 		}
-		else if (!ChangeCamera [0] && ChangeCamera [1] && !ChangeCamera [2]) {
+		else if (CameraMode == Mode.Player2) {
 			MainCamera [1].SetActive (true);
 			//AnswerCamera [1].SetActive (true);
 			CameraNumber = 1;
 		}
-		else if (!ChangeCamera [0] && !ChangeCamera [1] && ChangeCamera [2]) {
+		else if (CameraMode == Mode.Player3) {
 			MainCamera [2].SetActive (true);
 			//AnswerCamera [2].SetActive (true);
 			CameraNumber = 2;
 		}
+        else
+        {
+            CameraNumber = 3;
+        }
 
-        PlayTime = Random.Range(20f, 25f);
-        Debug.Log(PlayTime);
+
+
+
+        //
+        MainCamera[CameraNumber].transform.parent.gameObject.transform.Find("WBP").GetComponent<SkinnedMeshRenderer>().enabled = false;
+        MainCamera[CameraNumber].transform.parent.gameObject.transform.Find("PlayerMarker").GetComponent<MeshRenderer>().enabled = true;
+
+        PlayTime = Random.Range(21, 26);
+       Debug.Log(PlayTime);
     }
 
 	// Update is called once per frame
@@ -47,9 +72,10 @@ public class ChangingCamera : MonoBehaviour {
 		Timer += Time.deltaTime;
         OculusCamera.GetComponent<Camera>().enabled = false;
 
-        if (Timer > PlayTime)
-        {
+       // Debug.Log(Timer);
 
+       // if (Timer > PlayTime+5f){
+            if (Timer > 30){ 
             MainCamera[CameraNumber].GetComponent<Camera>().enabled = false;
             //AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
             OculusCamera.GetComponent<Camera>().enabled = true;
@@ -70,6 +96,8 @@ public class ChangingCamera : MonoBehaviour {
                 OculusCamera.GetComponent<Camera>().enabled = true;
             }
 
+
+
             ////三人称視点のトップからの視点へのシフトONOFF
             /*if (OVRInput.Get(OVRInput.RawButton.A))
             {
@@ -79,7 +107,6 @@ public class ChangingCamera : MonoBehaviour {
             }
             else
             {
-
                 // AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = false;
                 this.GetComponent<Camera>().enabled = false;
                 OculusCamera.GetComponent<Camera>().enabled = true;

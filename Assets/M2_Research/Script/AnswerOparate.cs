@@ -24,6 +24,8 @@ public class AnswerOparate : MonoBehaviour {
 
     private float[] posY = new float[7];
 
+
+
     // Use this for initialization
     void Start() {
         /*AnsCameraState = GetComponent<ChangingCamera> ();

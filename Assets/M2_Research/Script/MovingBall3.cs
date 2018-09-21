@@ -27,64 +27,88 @@ public class MovingBall3 : MonoBehaviour {
 		BallPos = this.transform.position;
 
 
-		StartCoroutine (DelayMethod (4f, () => {
-			if(flag==0){
-				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x, BallPos.y, Player2.z), "Time", 2f));
-				flag=1;
-			}
-		}));
+        if (timer <= GameObject.Find("FeedBackCamera").GetComponent<ChangingCamera>().PlayTime)
+        {
+            StartCoroutine(DelayMethod(4f, () =>
+            {
+                if (flag == 0)
+                {
+                    iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x, BallPos.y, Player2.z), "Time", 2f));
+                    flag = 1;
+                }
+            }));
 
-		StartCoroutine (DelayMethod (8.5f, () => {
-			if(flag==1){
-				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x+2f, BallPos.y, Player1.z-2f), "Time", 0.5f));
-				flag=2;
-			}
-		}));
+            StartCoroutine(DelayMethod(8.5f, () =>
+            {
+                if (flag == 1)
+                {
+                    iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x + 2f, BallPos.y, Player1.z - 2f), "Time", 0.5f));
+                    flag = 2;
+                }
+            }));
 
-		StartCoroutine (DelayMethod (10f, () => {
-			if(flag==2){
-				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player3.x, BallPos.y, Player3.z-1f), "Time", 0.5f));	
-				flag=3;
-			}
-		}));
+            StartCoroutine(DelayMethod(10f, () =>
+            {
+                if (flag == 2)
+                {
+                    iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player3.x, BallPos.y, Player3.z - 1f), "Time", 0.5f));
+                    flag = 3;
+                }
+            }));
 
-		StartCoroutine (DelayMethod (15.7f, () => {
-			if(flag==3){
-				flag=4;
-				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x, BallPos.y, Player2.z), "Time", 0.5f));	
-			}
-		}));
+            StartCoroutine(DelayMethod(15.5f, () =>
+            {
+                if (flag == 3)
+                {
+                    flag = 4;
+                    iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x, BallPos.y, Player2.z), "Time", 0.5f));
+                }
+            }));
 
 
-		StartCoroutine (DelayMethod (19.5f, () => {
-			if(flag==4){
-				flag=5;
-				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x-0.2f, BallPos.y, Player1.z-0.5f), "Time", 0.2f));	
-			}
-		}));
+            StartCoroutine(DelayMethod(17.5f, () =>
+            {
+                if (flag == 4)
+                {
+                    flag = 5;
+                    iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player1.x, BallPos.y, Player1.z), "Time", 0.2f));
+                    GameObject.Find("FeedBackCamera").GetComponent<AnswerOparate>().BallScore = 1;
+                }
+            }));
 
-		StartCoroutine (DelayMethod (20.7f, () => {
-			if(flag==5){
-				flag=6;
-				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x-1f, BallPos.y, Player2.z+0.7f), "Time", 0.2f));	
-			}
-		}));
+            StartCoroutine(DelayMethod(20.5f, () =>
+            {
+                if (flag == 5)
+                {
+                    flag = 6;
+                    //iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x-1f, BallPos.y, Player2.z+0.7f), "Time", 0.2f));	
+                }
+            }));
 
-		StartCoroutine (DelayMethod (22.5f, () => {
-			if(flag==6){
-				flag=7;
-				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player3.x+2f, BallPos.y, Player3.z-2f), "Time", 0.3f));	
-			}
-		}));
+            StartCoroutine(DelayMethod(21f, () =>
+            {
+                if (flag == 6)
+                {
+                    flag = 7;
+                    iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player3.x, BallPos.y, Player3.z), "Time", 0.5f));
+                    GameObject.Find("FeedBackCamera").GetComponent<AnswerOparate>().BallScore = 3;
+                }
+            }));
 
-		StartCoroutine (DelayMethod (25f, () => {
-			if(flag==7){
-				flag=8;
-				iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x, BallPos.y, Player2.z), "Time", 1f));
-				GameObject.Find("FeedBackCamera").GetComponent<AnswerOparate>().BallScore = 2;
-			}
-		}));
-
+            StartCoroutine(DelayMethod(25f, () =>
+            {
+                if (flag == 7)
+                {
+                    flag = 8;
+                    iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x + 1f, BallPos.y, Player2.z + 1.5f), "Time", 1f));
+                    GameObject.Find("FeedBackCamera").GetComponent<AnswerOparate>().BallScore = 2;
+                }
+            }));
+        }
+        else
+        {
+            flag = 10;
+        }
 	}
 
 	private IEnumerator DelayMethod(float time, Action action)

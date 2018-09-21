@@ -23,32 +23,33 @@ public class TrackingOurPlayer : MonoBehaviour {
 	private Vector3 LastedSpeed;
 
 	private float TimerCount;
-    private float PlayTime;
-
-
+   
+    
     void Start()
     {
-        PlayTime = GameObject.Find("FeedBackCamera").GetComponent<ChangingCamera>().PlayTime;
+       
+       
     }
 
 
     void Update () {
-
-		TimerCount += Time.deltaTime;
+       
+        TimerCount += Time.deltaTime;
 		
 		if (OurPlayer.transform.position.y != MoveOurBall.transform.position.y)
 			MoveOurBall.transform.position = new Vector3 (MoveOurBall.transform.position.x, OurPlayer.transform.position.y, MoveOurBall.transform.position.z);
 
 
-		if (TimerCount < PlayTime) {
-			
+		if (TimerCount < GameObject.Find("FeedBackCamera").GetComponent<ChangingCamera>().PlayTime) {
+            //if (TimerCount < 30) { 
 			if (TrackFlag == true) {
 				OurPlayer.GetComponent<Animator> ().SetBool ("runrun", true);
 				PlayerPos = OurPlayer.transform.position;
 				PlayerPos.x += (MoveOurBall.transform.position.x - PlayerPos.x) * 0.5f;
 				PlayerPos.z += (MoveOurBall.transform.position.z - PlayerPos.z) * 0.5f;
 				OurPlayer.transform.position = PlayerPos;
-				OurPlayer.transform.LookAt (MoveOurBall.transform.position);
+                OurPlayer.transform.LookAt (MoveOurBall.transform.position);
+                //OurPlayer.transform.rotation = Quaternion.RotateTowards(OurPlayer.transform.rotation, MoveOurBall.transform.rotation, Time.deltaTime);
 
 			} else {
 				Quaternion target = Quaternion.LookRotation (new Vector3 (BasketBall.rotation.x, OurPlayer.transform.rotation.y, BasketBall.rotation.z) - OurPlayer.transform.position);
@@ -91,5 +92,5 @@ public class TrackingOurPlayer : MonoBehaviour {
 		}
 			
 	}
-	
+
 }
