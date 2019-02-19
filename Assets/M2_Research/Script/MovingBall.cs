@@ -78,6 +78,7 @@ public class MovingBall : MonoBehaviour {
                 {
                     flag = 6;
                     iTween.MoveTo(this.gameObject, iTween.Hash("position", new Vector3(Player2.x, BallPos.y, Player2.z), "Time", 2f));
+                    GameObject.Find("FeedBackCamera").GetComponent<AnswerOparate>().BallScore = 2;
                 }
             }));
 

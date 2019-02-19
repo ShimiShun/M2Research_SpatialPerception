@@ -73,7 +73,7 @@ public class MovingBall4 : MonoBehaviour {
         {
             flag = 10;
         }
-        Debug.Log(GameObject.Find("FeedBackCamera").GetComponent<AnswerOparate>().BallScore);
+       // Debug.Log(GameObject.Find("FeedBackCamera").GetComponent<AnswerOparate>().BallScore);
 			
 
 	}

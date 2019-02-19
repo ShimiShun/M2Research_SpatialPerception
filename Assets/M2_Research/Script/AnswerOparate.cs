@@ -22,7 +22,9 @@ public class AnswerOparate : MonoBehaviour {
     public int BallScore;
 	public int a = 0;
 
+    private float[] posX = new float[7];
     private float[] posY = new float[7];
+    private float[] posZ = new float[7];
 
 
 
@@ -37,7 +39,10 @@ public class AnswerOparate : MonoBehaviour {
 
         for(int i=0; i<UserMovePlayers.Length; i++)
         {
-            posY[i] = UserMovePlayers[i].transform.position.y;
+            posZ[i] = UserMovePlayers[i].transform.localPosition.x;
+            posY[i] = UserMovePlayers[i].transform.localPosition.y;
+            posZ[i] = UserMovePlayers[i].transform.localPosition.z;
+            
         }
 
         
@@ -46,18 +51,22 @@ public class AnswerOparate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+       
         //CameraState = AnsCameraState.flag;
 
 
-        if (Input.GetKey(KeyCode.Return))
+        if (Input.GetKeyUp(KeyCode.Return))
         {
             for(int i=0; i<UserMovePlayers.Length; i++)
             {
-                if(UserMovePlayers[i].transform.position.y < -10f)
+                if(UserMovePlayers[i].transform.localPosition.y < -10f)
                 {
-                    var pos = UserMovePlayers[i].transform.position;
+                    var pos = UserMovePlayers[i].transform.localPosition;
+                    pos.x = posX[i];
                     pos.y = posY[i];
-                    UserMovePlayers[i].transform.position = pos;
+                    pos.z = posZ[i];
+                    UserMovePlayers[i].transform.localPosition = pos;
+                   
                 }
             }
 
@@ -65,7 +74,7 @@ public class AnswerOparate : MonoBehaviour {
         }
        
 		
-        /*-------EnterKeyで答え合わせをで～～～～ん---------*/
+        /*-------SpaceKeyで答え合わせをで～～～～ん---------*/
 		if (a == 0) {
 			if (Input.GetKey (KeyCode.Space)) {
 				var pos = TargetAnswer.transform.position;

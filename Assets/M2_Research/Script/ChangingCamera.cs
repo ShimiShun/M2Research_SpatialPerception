@@ -53,18 +53,20 @@ public class ChangingCamera : MonoBehaviour {
 		}
         else
         {
+            MainCamera[3].SetActive(true);
             CameraNumber = 3;
         }
 
 
 
-
-        //
-        MainCamera[CameraNumber].transform.parent.gameObject.transform.Find("WBP").GetComponent<SkinnedMeshRenderer>().enabled = false;
-        MainCamera[CameraNumber].transform.parent.gameObject.transform.Find("PlayerMarker").GetComponent<MeshRenderer>().enabled = true;
+        if (CameraNumber != 3)
+        {
+            MainCamera[CameraNumber].transform.parent.gameObject.transform.Find("WBP").GetComponent<SkinnedMeshRenderer>().enabled = false;
+            MainCamera[CameraNumber].transform.parent.gameObject.transform.Find("PlayerMarker").GetComponent<MeshRenderer>().enabled = true;
+        }
 
         PlayTime = Random.Range(21, 26);
-       Debug.Log(PlayTime);
+       //Debug.Log(PlayTime);
     }
 
 	// Update is called once per frame
@@ -74,8 +76,8 @@ public class ChangingCamera : MonoBehaviour {
 
        // Debug.Log(Timer);
 
-       // if (Timer > PlayTime+5f){
-            if (Timer > 30){ 
+        if (Timer > PlayTime+5f){
+            //if (Timer > 5){ 
             MainCamera[CameraNumber].GetComponent<Camera>().enabled = false;
             //AnswerCamera [CameraNumber].GetComponent<Camera> ().enabled = true;
             OculusCamera.GetComponent<Camera>().enabled = true;
